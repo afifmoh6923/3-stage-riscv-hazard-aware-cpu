@@ -1,6 +1,6 @@
 module cpu_top (
     input clk,
-    input rst_n, 
+    input rst_n 
 );
 
 // -------------------------------
@@ -76,7 +76,7 @@ if_ex_reg cpu_if_ex_reg (
     .pc_plus4(pc_plus4),
     .instr_out(instr_if_ex),
     .pc_out(pc_if_ex)
-)
+);
 
 assign opcode = instr_if_ex[6:0];
 assign rd = instr_if_ex[11:7];
@@ -90,7 +90,7 @@ imm_gen cpu_imm_gen (
     .imm(imm)
 );
 
-reg_file cpu_reg_file (
+regfile cpu_reg_file (
     .clk(clk),
     .rst_n(rst_n),
     .rs1_addr(rs1),
