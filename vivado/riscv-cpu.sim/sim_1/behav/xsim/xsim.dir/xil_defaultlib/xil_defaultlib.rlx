@@ -3,5 +3,7 @@
 May 22 2025
 00:13:55
 C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/pc.sv,1766734017,systemVerilog,,C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/pc_tb.sv,,pc,,uvm,../../../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/regfile.sv,1766735585,systemVerilog,,C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/regfile_tb.sv,,regfile,,uvm,../../../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/pc_tb.sv,1766873612,systemVerilog,,,,pc_tb,,uvm,../../../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/regfile_tb.sv,1766962467,systemVerilog,,,,regfile_tb,,uvm,../../../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,uvm,,,,,,
