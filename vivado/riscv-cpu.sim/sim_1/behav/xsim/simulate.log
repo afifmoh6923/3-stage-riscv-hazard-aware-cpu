@@ -1,9 +1,7 @@
 Time resolution is 1 ps
-RS1 Data = 67 (expected 67)
-RS1 Data = 10 (expected 10)
-RS2 Data = 20 (expected 20)
-RS1 Data = 0 (expected 0)
-RS1 Data = 0 (expected 0)
-RS1 Data = 45 (expected 45)
-REGFILE TEST COMPLETE
-$finish called at time : 110 ns : File "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/regfile_tb.sv" Line 86
+I-type Imm = 1 (expected 1)
+S-type Imm = 2 (expected 2)
+B-type Imm = 4 (expected 4)
+Load-type Imm = 4 (expected 4)
+IMM GEN TEST COMPLETE
+$finish called at time : 40 ns : File "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/imm_gen_tb.sv" Line 33

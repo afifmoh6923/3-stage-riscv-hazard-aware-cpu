@@ -1,7 +1,7 @@
 # compile verilog/system verilog design source files
 sv xil_defaultlib  --include "../../../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
-"../../../../../rtl/regfile.sv" \
-"../../../../../tb/regfile_tb.sv" \
+"../../../../../rtl/imm_gen.sv" \
+"../../../../../tb/imm_gen_tb.sv" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

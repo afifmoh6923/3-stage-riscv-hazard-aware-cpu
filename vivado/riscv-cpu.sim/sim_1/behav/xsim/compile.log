@@ -1,4 +1,4 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/regfile.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module regfile
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/regfile_tb.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module regfile_tb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/imm_gen.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module imm_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/imm_gen_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module imm_gen_tb
