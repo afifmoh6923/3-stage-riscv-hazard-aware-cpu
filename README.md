@@ -1,7 +1,5 @@
 # 3-stage-riscv-hazard-aware-cpu
 
-# 3-stage-riscv-hazard-aware-cpu
-
 A small educational 3-stage RISC‑V-like CPU (IF → EX → WB) with simple hazard detection and forwarding logic. The design implements:
 - Basic RISC-V instruction support for arithmetic, loads/stores, and branches (14 Total Instructions).
 - Immediate generation for I/S/B/L types.
