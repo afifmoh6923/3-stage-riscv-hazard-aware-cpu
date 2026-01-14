@@ -1,35 +1,37 @@
 Time resolution is 1 ps
-PC=00000000 instr=00000013 alu=00000000 wb=00000000 rd=0 we=0
-PC=00000000 instr=00000013 alu=00000000 wb=00000000 rd=0 we=0
-PC=00000000 instr=00000013 alu=00000000 wb=00000000 rd=0 we=0
-PC=00000004 instr=00100093 alu=00000000 wb=00000000 rd=0 we=0
-PC=00000008 instr=00200113 alu=00000000 wb=00000000 rd=0 we=1
-PC=0000000c instr=002081b3 alu=00000001 wb=00000001 rd=1 we=1
-PC=00000010 instr=xxxxxxxx alu=00000002 wb=00000002 rd=2 we=1
-PC=00000014 instr=xxxxxxxx alu=00000001 wb=00000001 rd=3 we=1
-PC=00000018 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000001c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000020 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000024 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000028 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000002c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000030 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000034 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000038 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000003c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000040 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000044 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000048 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000004c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000050 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000054 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000058 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000005c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000060 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000064 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=00000068 instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
-PC=0000006c instr=xxxxxxxx alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=5000 PC=00000000 instr=00500093 instr_if_ex=00000000 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=0
+5000: Program loaded into imem. mem0=00500093 mem1=00a00113 mem2=002081b3
+t=15000 PC=00000000 instr=00500093 instr_if_ex=00000000 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=0
+t=25000 PC=00000000 instr=00500093 instr_if_ex=00000000 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=0
+t=35000 PC=00000004 instr=00a00113 instr_if_ex=00500093 rs1=0 rs2=5 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=0
+t=45000 PC=00000008 instr=002081b3 instr_if_ex=00a00113 rs1=0 rs2=10 rs1_d=0 rs2_d=0 alu=00000005 wb=00000005 rd=1 we=1
+t=55000 PC=0000000c instr=00302023 instr_if_ex=002081b3 rs1=1 rs2=2 rs1_d=5 rs2_d=10 alu=0000000a wb=0000000a rd=2 we=1
+t=65000 PC=00000010 instr=00002203 instr_if_ex=00302023 rs1=0 rs2=3 rs1_d=0 rs2_d=15 alu=0000000f wb=0000000f rd=3 we=1
+t=75000 PC=00000014 instr=00000013 instr_if_ex=00002203 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=0
+t=85000 PC=00000018 instr=00000013 instr_if_ex=00000013 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=0000000f rd=4 we=1
+t=95000 PC=0000001c instr=xxxxxxxx instr_if_ex=00000013 rs1=0 rs2=0 rs1_d=0 rs2_d=0 alu=00000000 wb=00000000 rd=0 we=1
+t=105000 PC=00000020 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=00000000 wb=00000000 rd=0 we=1
+t=115000 PC=00000024 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=125000 PC=00000028 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=135000 PC=0000002c instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=145000 PC=00000030 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=155000 PC=00000034 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=165000 PC=00000038 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=175000 PC=0000003c instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=185000 PC=00000040 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=195000 PC=00000044 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=205000 PC=00000048 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=215000 PC=0000004c instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=225000 PC=00000050 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=235000 PC=00000054 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=245000 PC=00000058 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=255000 PC=0000005c instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=265000 PC=00000060 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=275000 PC=00000064 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=285000 PC=00000068 instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
+t=295000 PC=0000006c instr=xxxxxxxx instr_if_ex=xxxxxxxx rs1=x rs2=x rs1_d=x rs2_d=x alu=xxxxxxxx wb=xxxxxxxx rd=x we=0
 Checking results...
-Fatal: FAIL: x1 incorrect
-Time: 300 ns  Iteration: 0  Process: /cpu_top_tb/Initial58_16  Scope: cpu_top_tb  File: C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/cpu_top_tb.sv Line: 68
-$finish called at time : 300 ns
+=================================
+PASS: CPU basic test successful!
+=================================
+$finish called at time : 300 ns : File "C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/tb/cpu_top_tb.sv" Line 97

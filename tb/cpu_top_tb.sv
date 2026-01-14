@@ -14,16 +14,24 @@ initial begin
     forever #5 clk = ~clk; // 10 time units clock period
 end
 
+// Reset: hold low for 20 time units, then release
 initial begin
-        rst_n = 0;
-        #20;
-        rst_n = 1;
+    rst_n = 0;
+    #20;
+    rst_n = 1;
 end
 
+// Per-cycle display (extended for debug)
 always @(posedge clk) begin
-    $display("PC=%h instr=%h alu=%h wb=%h rd=%0d we=%b",
+    $display("t=%0t PC=%08h instr=%08h instr_if_ex=%08h rs1=%0d rs2=%0d rs1_d=%0d rs2_d=%0d alu=%08h wb=%08h rd=%0d we=%b",
+        $time,
         dut.pc,
         dut.instr,
+        dut.instr_if_ex,
+        dut.instr_if_ex[19:15],
+        dut.instr_if_ex[24:20],
+        dut.cpu_reg_file.rs1_data,
+        dut.cpu_reg_file.rs2_data,
         dut.alu_result_ex_wb,
         dut.wb_data,
         dut.rd_ex_wb,
@@ -32,15 +40,17 @@ always @(posedge clk) begin
 end
 
 // -----------------------------
-// Program Loader
+// Program Loader (UPDATED)
 // -----------------------------
+// Load the program into instruction memory while CPU is held in reset.
+// This ensures the first fetch sees the correct instructions and prevents
+// races where the CPU fetches before the TB writes the memory.
 initial begin
-    // Wait for reset
-    @(negedge rst_n);
-    @(posedge rst_n);
+    // Wait until reset is asserted (low)
+    // This will synchronize to the reset initial block so writes happen while CPU is held in reset.
+    wait (rst_n === 1'b0);
 
-    // Load program into instruction memory
-    // NOTE: hierarchical access
+    // Load program into instruction memory (hierarchical access)
     dut.cpu_imem.memory[0] = 32'h00500093; // addi x1, x0, 5
     dut.cpu_imem.memory[1] = 32'h00A00113; // addi x2, x0, 10
     dut.cpu_imem.memory[2] = 32'h002081B3; // add x3, x1, x2
@@ -50,17 +60,21 @@ initial begin
     // Optional NOPs
     dut.cpu_imem.memory[5] = 32'h00000013;
     dut.cpu_imem.memory[6] = 32'h00000013;
+
+    // Small handshake: wait a posedge to ensure memory writes are stable before reset release
+    @(posedge clk);
+    $display("%0t: Program loaded into imem. mem0=%08h mem1=%08h mem2=%08h", $time, dut.cpu_imem.memory[0], dut.cpu_imem.memory[1], dut.cpu_imem.memory[2]);
+
+    // Keep this initial block done; reset release happens in the reset initial block above.
 end
 
 // -----------------------------
-// Simulation Control
+// Simulation Control & Check
 // -----------------------------
 initial begin
     // Run long enough for pipeline to complete
     #300;
 
-    // -----------------------------
-    // CHECK RESULTS
     // -----------------------------
     $display("Checking results...");
 
