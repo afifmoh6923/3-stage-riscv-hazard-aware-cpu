@@ -25,6 +25,8 @@ module cpu_top (
     logic alu_src;        // 0 = rs2, 1 = imm
     logic [31:0] rs1_data, rs2_data;
     logic [31:0] imm;
+    logic [31:0] branch_target;
+    logic        branch_taken;
 
     // ALU wires
     logic [31:0] alu_op_b;
@@ -62,7 +64,7 @@ pc cpu_pc (
 );
 
 assign pc_plus4 = pc + 4;
-assign pc_next = pc_plus4; // For now, no branches/jumps
+assign pc_next = branch_taken ? branch_target : pc_plus4;
 
 imem cpu_imem (
     .address(pc),
@@ -89,6 +91,7 @@ imm_gen cpu_imm_gen (
     .instruct(instr_if_ex),
     .imm(imm)
 );
+assign branch_target = pc_if_ex + imm;
 
 regfile cpu_reg_file (
     .clk(clk),
@@ -129,6 +132,7 @@ alu cpu_alu (
     .alu_rslt(alu_result),
     .zero(zero)
 );
+assign branch_taken = branch & zero;
 
 ex_wb_reg cpu_ex_wb_reg (
     .clk(clk),

@@ -15,7 +15,7 @@ always_comb begin
         3'b010: alu_rslt = op_a + op_b;          // ADD
         3'b011: alu_rslt = op_a ^ op_b;          // XOR
         3'b110: alu_rslt = op_a - op_b;          // SUB
-        3'b111: alu_rslt = ($signed(op_a) < $signed(op_b)) ? 1 : 0; // SLT
+        3'b100: alu_rslt = ($signed(op_a) < $signed(op_b)) ? 1 : 0; // SLT
         default: alu_rslt = 32'b0;                // Default case
     endcase
 end

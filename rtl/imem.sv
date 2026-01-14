@@ -6,7 +6,7 @@ module imem (
 logic [31:0] memory [0:255]; // 256 x 32-bit instruction memory
 
 initial begin
-    $readmemh("program.hex", memory);
+    $readmemh("program.mem", memory);
 end
 
 always_comb begin

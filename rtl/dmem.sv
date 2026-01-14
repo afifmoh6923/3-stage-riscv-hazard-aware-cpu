@@ -19,7 +19,7 @@ always_comb begin
     if(mem_read) begin
         rd = memory[address[9:2]]; // Word-aligned access
     end else begin 
-        rd = 0;
+        rd = 32'h00000000;
     end
 end
 
