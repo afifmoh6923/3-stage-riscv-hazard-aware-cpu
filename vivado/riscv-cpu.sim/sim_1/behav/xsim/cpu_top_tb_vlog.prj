@@ -6,6 +6,7 @@ sv xil_defaultlib  --include "../../../../../../../../../../../Xilinx/2025.1/Viv
 "../../../../../rtl/cpu_top.sv" \
 "../../../../../rtl/dmem.sv" \
 "../../../../../rtl/ex_wb_reg.sv" \
+"../../../../../rtl/hazard_unit.sv" \
 "../../../../../rtl/if_ex_reg.sv" \
 "../../../../../rtl/imem.sv" \
 "../../../../../rtl/imm_gen.sv" \

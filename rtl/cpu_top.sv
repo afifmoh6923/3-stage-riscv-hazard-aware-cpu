@@ -15,6 +15,11 @@ module cpu_top (
     logic [31:0] instr_if_ex;
     logic [31:0] pc_if_ex;
 
+    // stall/flush signals from hazard logic
+    logic stall_if_ex;
+    // flush for branch-taken: when branch decision is made in EX stage we flush IF/EX
+    logic flush_if_ex;
+
     // -------------------------------
     // EX Stage Wires
     // -------------------------------
@@ -64,7 +69,7 @@ pc cpu_pc (
 );
 
 assign pc_plus4 = pc + 4;
-assign pc_next = branch_taken ? branch_target : pc_plus4;
+assign pc_next = (stall_if_ex) ? pc : (branch_taken ? branch_target : pc_plus4);
 
 imem cpu_imem (
     .address(pc),
@@ -76,6 +81,8 @@ if_ex_reg cpu_if_ex_reg (
     .rst_n(rst_n),
     .instr_in(instr),
     .pc_plus4(pc_plus4),
+    .stall(stall_if_ex),
+    .flush(flush_if_ex),
     .instr_out(instr_if_ex),
     .pc_out(pc_if_ex)
 );
@@ -115,6 +122,14 @@ control cpu_control (
     .branch(branch),
     .alu_op(alu_op)
 );
+
+// ---------- Forwarding (WB -> EX) ------------
+// If WB stage is writing to a register that EX-stage needs, forward wb_data.
+// This avoids requiring the regfile combinational bypass and models WB→EX forwarding.
+logic [31:0] rs1_data_fwd, rs2_data_fwd;
+
+assign rs1_data_fwd = (reg_write_ex_wb && (rd_ex_wb != 5'd0) && (rd_ex_wb == rs1)) ? wb_data : rs1_data;
+assign rs2_data_fwd = (reg_write_ex_wb && (rd_ex_wb != 5'd0) && (rd_ex_wb == rs2)) ? wb_data : rs2_data;
 
 assign alu_op_b = (alu_src) ? imm : rs2_data;
 
@@ -160,6 +175,13 @@ dmem cpu_dmem (
 
 // WB Stage (MUX)
 assign wb_data = (mem_to_reg_ex_wb) ? mem_data_ex_wb : alu_result_ex_wb;
+
+hazard_unit cpu_hazard (
+    .mem_read_ex(mem_read),
+    .rd_ex(rd),
+    .instr_if(instr),
+    .stall(stall_if_ex)
+);
 
 endmodule
 
