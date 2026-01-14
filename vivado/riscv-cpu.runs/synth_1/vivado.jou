@@ -3,8 +3,8 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Wed Jan 14 12:46:22 2026
-# Process ID         : 18108
+# Start of session at: Wed Jan 14 13:14:39 2026
+# Process ID         : 15796
 # Current directory  : C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.runs/synth_1
 # Command line       : vivado.exe -log cpu_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu_top.tcl
 # Log file           : C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.runs/synth_1/cpu_top.vds
@@ -19,6 +19,6 @@
 # Host memory        : 16312 MB
 # Swap memory        : 16642 MB
 # Total Virtual      : 32955 MB
-# Available Virtual  : 7593 MB
+# Available Virtual  : 7744 MB
 #-----------------------------------------------------------
 source cpu_top.tcl -notrace

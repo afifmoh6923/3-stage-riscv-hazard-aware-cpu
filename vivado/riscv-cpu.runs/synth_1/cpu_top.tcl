@@ -72,6 +72,7 @@ set_property ip_output_repo c:/Users/patsn/OneDrive/Documents/fpga-projects/3-st
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_mem C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/programs/program.mem
 read_verilog -library xil_defaultlib -sv {
   C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/alu.sv
   C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/rtl/alu_control.sv
@@ -96,6 +97,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.srcs/utils_1/imports/synth_1/cpu_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

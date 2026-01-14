@@ -62,3 +62,68 @@ Recommended checks & known limitations
 - Ensure `x0` (register 0) is correctly implemented as constant zero and writes to x0 are ignored.
 - Memory and memory alignment: this project assumes word-aligned accesses by default — add checks if you add byte/halfword support.
 - The CPU is intended for learning and small experiments; it is not optimized for performance, and certain corner-cases and advanced RISC‑V instructions are out-of-scope.
+
+Suggested FPGA prototyping plan & Next steps
+This section is a plan for taking the design from simulation to prototype on an FPGA, plus other recommended improvements for robustness, verification, and usability.
+
+1) Goal: Prototype the CPU on an FPGA, run the programs in `programs/`, observe behavior (PC progression, register values), and measure resource utilization and max frequency.
+
+2) Recommended target boards (beginner-friendly)
+   - Xilinx Artix-7/Spartan-6 dev boards (e.g., Digilent Arty A7) — good Vivado support.
+
+3) Required RTL and build changes before FPGA
+   - Replace behavioral memories (imem/dmem) with block RAM primitives:
+     - For Xilinx: use inferred BRAM or use Xilinx RAMB primitives and initialize with `.mem` via `$readmemh` during simulation and via COE/INIT for bitstream if needed.
+     - For open-source flows, infer ROM/RAM in a manner the synthesizer recognizes (single-port/dual-port BRAM inference).
+   - Provide a reset/start vector: ensure `.text` is located at the reset address expected by the FPGA implementation (commonly 0x0 or 0x1000 depending on loader).
+   - Make `dmem` synchronous for read data if desired (BRAM read latency may be 1 cycle); adapt pipeline to account for BRAM read latency (introduce appropriate pipeline stage or combinational read style that maps to BRAM).
+   - Add simple MMIO for peripherals: UART (for prints), LEDs, switches for simple I/O and debugging. A very small UART (baud 115200) is useful to print register values or boot messages.
+   - Implement a minimal "bootstrap loader" if you cannot initialize BRAM from bitstream: a simple ROM bootloader in FPGA fabric that loads a program into RAM over UART or SPI.
+
+4) Build flow (Xilinx Vivado example)
+   - Create a Vivado project targeting the chosen board.
+   - Add RTL files.
+   - Add constraints file (.xdc) mapping clocks and UART/LED pins.
+   - Synthesize, implement, and generate bitstream. Monitor timing and resource reports.
+   - Program FPGA and monitor UART/LED outputs.
+   - Debug with Vivado logic analyzer (ILA) or use an on-board USB-UART to print status.
+
+5) Test plan on FPGA
+   - Stage 1: Smoke test — program a simple program that sets registers and toggles LEDs; check basic correctness.
+   - Stage 2: Memory test — run `store_load.mem` and verify memory contents via reading back and comparing (use UART prints).
+   - Stage 3: Hazard & forwarding test — run `load_use.mem` and capture the expected register results; verify the pipeline stalls actually occur (observe PC stays same when expected).
+   - Stage 4: Branch test — run `branch_test.mem`; verify taken/not-taken behavior and flush semantics.
+   - For visibility: add a small CSR or MMIO that prints PC, current IF instruction, EX rd, mem_read, stall at chosen intervals (e.g., via UART) to validate dynamic behavior.
+
+6) Verification & quality-of-design (medium priority)
+   - Add SystemVerilog Assertions (SVA) for important invariants:
+     - x0 always zero
+     - if `mem_read_ex` asserted and `rd_ex==rs1_if` then `stall` asserted
+     - pipeline registers hold values on stall
+   - Add more unit tests and a cpu_top integration test that initializes `imem` with a test program and checks registers after N cycles.
+   - Consider adding constrained-random tests for sequences of dependent instructions to find corner-case hazards.
+
+7) Performance & resource measurement (on FPGA)
+   - Track LUT/FF/BRAM/IO usage and maximum achievable frequency.
+   - Measure cycles to run example programs and count stalls using instrumentation — compute CPI (cycles per instruction) for test programs (useful resume metric).
+
+8) Potential advanced next steps (longer-term)
+    - Add an instruction decode stage to expand to 4-stage pipeline (IF/ID/EX/WB) and more complex hazard handling.
+    - Implement a branch predictor (static or simple dynamic) to reduce branch mispredict cost.
+    - Support additional RISC‑V extensions (M, atomic, compressed) or privilege modes.
+    - Add JTAG or RISC-V debug module for stepping and memory/register inspection.
+    - Run on actual ASIC flow (synthesis + place & route) if targeting silicon.
+
+Estimated effort (rough)
+- FPGA smoke prototype (single board, add UART/LED debug, make memories BRAM-friendly): 1–2 weeks (assumes familiarity with Vivado or open-source tools).
+- Full test harness + UART-based debug and measurement counters: 1–2 additional weeks.
+- Extended verification (SVA, constrained-random tests): 1–3 weeks depending on coverage goals.
+
+Concrete checklist you can use
+- [ ] Convert `imem`/`dmem` to inferred BRAM or BRAM primitives and ensure proper initialization.
+- [ ] Add UART MMIO and a simple print mechanism.
+- [ ] Add `stall_counter` and `cycle_counter` registers exposed via MMIO.
+- [ ] Create Vivado project and pin constraints for board.
+- [ ] Implement bootloader or initialize BRAM from bitstream (`$readmemh` can initialize BRAM for simulation but on real FPGA use INIT/COE or upload at runtime).
+- [ ] Run and validate `basic.mem`, `load_use.mem`, `store_load.mem`, `branch_test.mem` on hardware and capture results.
+- [ ] Document measured resource usage and max frequency in a short report.
