@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Jan 14 13:02:14 2026
+# Process ID         : 31532
+# Current directory  : C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.runs/impl_1
+# Command line       : vivado.exe -log cpu_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source cpu_top.tcl -notrace
+# Log file           : C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.runs/impl_1/cpu_top.vdi
+# Journal file       : C:/Users/patsn/OneDrive/Documents/fpga-projects/3-stage-riscv-hazard-aware-cpu/vivado/riscv-cpu.runs/impl_1\vivado.jou
+# Running On         : afiflaptop
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : AMD Ryzen 9 7940HS with Radeon 780M Graphics
+# CPU Frequency      : 3992 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 16312 MB
+# Swap memory        : 16642 MB
+# Total Virtual      : 32955 MB
+# Available Virtual  : 5615 MB
+#-----------------------------------------------------------
+source cpu_top.tcl -notrace
