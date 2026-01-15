@@ -1,0 +1,2 @@
+00100093  // 0x00100093 : ADDI x1, x0, 1     -> x1 = 1 (initial value)
+00000063  // 0x00000063 : BEQ  x0, x0, 0    -> infinite loop / halt (branch to self)

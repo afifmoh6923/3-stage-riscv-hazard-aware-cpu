@@ -1,0 +1,6 @@
+00400093  // 0x00400093 : ADDI x1, x0, 4     -> x1 = 4 (address)
+00B00113  // 0x00B00113 : ADDI x2, x0, 11    -> x2 = 11 (value)
+0020A023  // 0x0020A023 : SW   x2, 0(x1)     -> store x2 at mem[address 4 -> index 1]
+0000A183  // 0x0000A183 : LW   x3, 0(x1)     -> load mem[address 4] into x3 (should read 11)
+00218233  // 0x00218233 : ADD  x4, x3, x2    -> x4 = x3 + x2 = 22
+00000063  // 0x00000063 : BEQ  x0, x0, 0    -> infinite loop / halt (branch to self)

@@ -1,0 +1,7 @@
+00000093  // 0x00000093 : ADDI x1, x0, 0     -> x1 = 0 (base addr)
+00700113  // 0x00700113 : ADDI x2, x0, 7     -> x2 = 7 (value)
+0020A023  // 0x0020A023 : SW   x2, 0(x1)     -> mem[0] = x2 (store 7)
+0000A283  // 0x0000A283 : LW   x5, 0(x1)     -> x5 = mem[0] (load)  <-- load in EX
+00228333  // 0x00228333 : ADD  x6, x5, x2    -> x6 = x5 + x2  (dependent on load -> load-use hazard)
+00000013  // 0x00000013 : NOP                 -> padding / bubble
+00000063  // 0x00000063 : BEQ  x0, x0, 0    -> infinite loop / halt (branch to self)

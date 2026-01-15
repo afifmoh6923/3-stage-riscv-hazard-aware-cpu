@@ -1,0 +1,10 @@
+00500093  // 0x00500093 : ADDI x1, x0, 5     -> x1 = 5
+00500113  // 0x00500113 : ADDI x2, x0, 5     -> x2 = 5
+00208663  // 0x00208663 : BEQ  x1, x2, +8    -> branch to the "taken" block (skip next instr)
+00000193  // 0x00000193 : ADDI x3, x0, 0     -> x3 = 0  (skipped when branch taken)
+00800063  // 0x00800063 : BEQ  x0, x0, +8    -> unconditional jump (skip next instr)
+00100193  // 0x00100193 : ADDI x3, x0, 1     -> x3 = 1  (executed when branch taken)
+00900213  // 0x00900213 : ADDI x4, x0, 9     -> x4 = 9
+00408463  // 0x00408463 : BEQ  x1, x4, +?    -> branch (not taken here)
+00200293  // 0x00200293 : ADDI x5, x0, 2     -> x5 = 2
+00000063  // 0x00000063 : BEQ  x0, x0, 0    -> infinite loop / halt (branch to self)
